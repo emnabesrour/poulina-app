@@ -1,0 +1,92 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1>Demandes</h1>
+      <p>
+        {{ auth.isAdmin()
+          ? 'Suivi et validation des demandes de matériel'
+          : 'Nouvelle demande et suivi de vos commandes' }}
+      </p>
+    </div>
+  </header>
+
+  @if (error()) { <p class="alert error">{{ error() }}</p> }
+  @if (success()) { <p class="alert success">{{ success() }}</p> }
+
+  <div class="grid-2">
+    <form class="panel form" (ngSubmit)="create()">
+      <h2>Nouvelle demande</h2>
+      <label>
+        Matériel
+        <select [(ngModel)]="form.materielId" name="materielId" required>
+          @for (m of materiels(); track m.id) {
+            <option [value]="m.id">{{ m.libelle }}</option>
+          }
+        </select>
+      </label>
+      <label>
+        Quantité
+        <input type="number" min="1" [(ngModel)]="form.quantite" name="quantite" required />
+      </label>
+      <label>
+        Commentaire
+        <textarea [(ngModel)]="form.commentaire" name="commentaire" rows="3" placeholder="Précisions éventuelles"></textarea>
+      </label>
+      <div class="actions">
+        <button type="submit">Envoyer la demande</button>
+      </div>
+    </form>
+
+    <div class="panel">
+      <h2>{{ auth.isAdmin() ? 'Toutes les demandes' : 'Mes demandes' }}</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Référence</th>
+              <th>Matériel</th>
+              <th>Qté</th>
+              @if (auth.isAdmin()) { <th>Demandeur</th> }
+              <th>Statut</th>
+              <th>Commentaire</th>
+              @if (auth.isAdmin()) { <th>Actions</th> }
+            </tr>
+          </thead>
+          <tbody>
+            @for (d of demandes(); track d.id) {
+              <tr>
+                <td>{{ d.reference }}</td>
+                <td>{{ d.materiel?.libelle || '—' }}</td>
+                <td>{{ d.quantite }}</td>
+                @if (auth.isAdmin()) {
+                  <td>{{ d.utilisateur?.prenom }} {{ d.utilisateur?.nom }}</td>
+                }
+                <td>
+                  <span class="badge" [class]="d.statut.toLowerCase()">{{ labelStatut(d.statut) }}</span>
+                </td>
+                <td>{{ d.commentaire || '—' }}</td>
+                @if (auth.isAdmin()) {
+                  <td class="row-actions">
+                    <button type="button" class="link" (click)="setStatut(d, 'ACCEPTEE')" [disabled]="d.statut === 'ACCEPTEE'">
+                      Accepter
+                    </button>
+                    <button type="button" class="link danger" (click)="setStatut(d, 'REFUSEE')" [disabled]="d.statut === 'REFUSEE'">
+                      Refuser
+                    </button>
+                    <button type="button" class="link" (click)="setStatut(d, 'EN_ATTENTE')" [disabled]="d.statut === 'EN_ATTENTE'">
+                      En attente
+                    </button>
+                  </td>
+                }
+              </tr>
+            } @empty {
+              <tr>
+                <td [attr.colspan]="auth.isAdmin() ? 7 : 5">Aucune demande</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

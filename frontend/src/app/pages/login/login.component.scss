@@ -1,0 +1,160 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 100%;
+  width: 100%;
+}
+
+.login-page {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(37, 99, 235, 0.22), transparent 42%),
+    radial-gradient(circle at 88% 12%, rgba(14, 116, 144, 0.16), transparent 36%),
+    linear-gradient(155deg, #071a3a 0%, #0b2c5f 48%, #163e7a 100%);
+}
+
+.login-panel {
+  width: min(100%, 440px);
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 18px;
+  padding: 2rem 2.1rem;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.35rem;
+}
+
+.logo {
+  display: block;
+  width: min(100%, 210px);
+  height: auto;
+  margin: 0 auto 0.85rem;
+  object-fit: contain;
+}
+
+.brand .eyebrow {
+  margin: 0;
+  color: #0b2c5f;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.brand h1 {
+  margin: 0.4rem 0 0.25rem;
+  font-size: clamp(1.45rem, 4vw, 1.85rem);
+  color: #0f172a;
+}
+
+.subtitle {
+  margin: 0;
+  color: #64748b;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: 2px solid #0b2c5f;
+  border-color: transparent;
+}
+
+button {
+  margin-top: 0.35rem;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  background: #0b2c5f;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.error {
+  margin: 0;
+  color: #b91c1c;
+  background: #fef2f2;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+.security-note {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #0b2c5f;
+  background: #eef3fb;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font-weight: 600;
+}
+
+.hints {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.hints summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0b2c5f;
+  margin-bottom: 0.45rem;
+}
+
+.hints p {
+  margin: 0.2rem 0;
+}
+
+@media (max-width: 420px) {
+  .login-page {
+    padding: 1rem;
+  }
+
+  .login-panel {
+    padding: 1.35rem 1.15rem;
+  }
+}

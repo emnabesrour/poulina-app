@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+.badge.en_attente {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.badge.acceptee {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.badge.refusee {
+  background: #fef2f2;
+  color: #b91c1c;
+}

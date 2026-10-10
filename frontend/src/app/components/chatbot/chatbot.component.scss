@@ -1,0 +1,156 @@
+.chatbot {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.fab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.65rem 1rem 0.65rem 0.65rem;
+  background: #0b2c5f;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(11, 44, 95, 0.35);
+  cursor: pointer;
+}
+
+.fab img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+}
+
+.panel {
+  width: min(92vw, 380px);
+  height: min(70vh, 520px);
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #d7e0ec;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(135deg, #0b2c5f, #163e7a);
+  color: #fff;
+}
+
+header small {
+  display: block;
+  opacity: 0.8;
+  font-size: 0.75rem;
+}
+
+.icon {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.45rem;
+}
+
+.messages {
+  overflow: auto;
+  padding: 0.9rem;
+  background: linear-gradient(180deg, #f7f9fc, #eef3f9);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.bubble {
+  max-width: 88%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.bubble pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: inherit;
+}
+
+.bubble.bot {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+.bubble.user {
+  align-self: flex-end;
+  background: #0b2c5f;
+  color: #fff;
+}
+
+.typing {
+  color: #64748b;
+  font-style: italic;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.55rem 0.75rem;
+  border-top: 1px solid #e8eef6;
+  background: #fff;
+}
+
+.suggestions button {
+  border: 1px solid #c9d7ea;
+  background: #f4f8fd;
+  color: #0b2c5f;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem;
+  padding: 0.7rem;
+  border-top: 1px solid #e8eef6;
+  background: #fff;
+}
+
+.composer input {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+}
+
+.composer button {
+  border: 0;
+  border-radius: 10px;
+  background: #0b2c5f;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}

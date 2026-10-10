@@ -1,0 +1,55 @@
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img class="logo" src="assets/logo-poulina.svg" alt="Poulina Group Holding" />
+      <div class="brand-text">
+        <strong>Gestion Matériel</strong>
+        <small>Système interne PGH</small>
+      </div>
+    </div>
+
+    <p class="nav-label">Navigation</p>
+    <nav>
+      @if (auth.isAdmin()) {
+        <a routerLink="/utilisateurs" routerLinkActive="active">Utilisateurs</a>
+      }
+      <a routerLink="/materiels" routerLinkActive="active">Matériel</a>
+      <a routerLink="/demandes" routerLinkActive="active">Demandes</a>
+      @if (auth.isAdmin()) {
+        <a routerLink="/securite" routerLinkActive="active">Centre Sécurité</a>
+      }
+    </nav>
+
+    <div class="user-box">
+      @if (auth.user(); as u) {
+        <div class="avatar">{{ u.prenom.charAt(0) }}{{ u.nom.charAt(0) }}</div>
+        <div class="meta">
+          <p>{{ u.prenom }} {{ u.nom }}</p>
+          <small>{{ u.role === 'ADMINISTRATEUR' ? 'Administrateur' : 'Utilisateur' }}</small>
+        </div>
+      }
+      <button type="button" class="logout" (click)="auth.logout()">Déconnexion</button>
+    </div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar">
+      <div>
+        <p class="env">Environnement de production · Poulina Group Holding</p>
+        <p class="clock">{{ today | date: "EEEE d MMMM yyyy · HH:mm" }}</p>
+      </div>
+      @if (auth.user(); as u) {
+        <div class="top-user">
+          <span class="dot"></span>
+          Session active · {{ u.login }}
+        </div>
+      }
+    </header>
+
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+
+  <app-chatbot />
+</div>

@@ -1,0 +1,45 @@
+<div class="chatbot">
+  @if (open()) {
+    <div class="panel" role="dialog" aria-label="Assistant Poulina">
+      <header>
+        <div>
+          <strong>Assistant Poulina</strong>
+          <small>Aide métier & sécurité</small>
+        </div>
+        <button type="button" class="icon" (click)="toggle()" aria-label="Fermer">×</button>
+      </header>
+
+      <div class="messages" #scrollBox>
+        @for (m of messages(); track $index) {
+          <div class="bubble" [class.user]="m.from === 'user'" [class.bot]="m.from === 'bot'">
+            <pre>{{ m.text }}</pre>
+          </div>
+        }
+        @if (loading()) {
+          <div class="bubble bot typing">Assistant en train d’écrire…</div>
+        }
+      </div>
+
+      <div class="suggestions">
+        @for (s of suggestions(); track s) {
+          <button type="button" (click)="sendSuggestion(s)">{{ s }}</button>
+        }
+      </div>
+
+      <form class="composer" (ngSubmit)="send()">
+        <input
+          [(ngModel)]="draft"
+          name="draft"
+          placeholder="Posez votre question…"
+          autocomplete="off"
+        />
+        <button type="submit" [disabled]="loading()">Envoyer</button>
+      </form>
+    </div>
+  }
+
+  <button type="button" class="fab" (click)="toggle()" [attr.aria-expanded]="open()">
+    <img src="assets/logo-poulina-icon.png" alt="" />
+    <span>{{ open() ? 'Fermer' : 'Aide' }}</span>
+  </button>
+</div>

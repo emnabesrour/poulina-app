@@ -1,0 +1,61 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1>Matériel</h1>
+      <p>{{ auth.isAdmin() ? 'Ajout et consultation du catalogue' : 'Consultation du catalogue matériel' }}</p>
+    </div>
+  </header>
+
+  @if (error()) { <p class="alert error">{{ error() }}</p> }
+  @if (success()) { <p class="alert success">{{ success() }}</p> }
+
+  <div class="grid-2" [class.single]="!auth.isAdmin()">
+    @if (auth.isAdmin()) {
+      <form class="panel form" (ngSubmit)="save()">
+        <h2>{{ editingId ? 'Modifier' : 'Ajouter' }} un matériel</h2>
+        <label>Libellé <input [(ngModel)]="form.libelle" name="libelle" required /></label>
+        <label>
+          Descriptif
+          <textarea [(ngModel)]="form.descriptif" name="descriptif" rows="4" required></textarea>
+        </label>
+        <div class="actions">
+          <button type="submit">{{ editingId ? 'Enregistrer' : 'Ajouter' }}</button>
+          @if (editingId) {
+            <button type="button" class="ghost" (click)="resetForm()">Annuler</button>
+          }
+        </div>
+      </form>
+    }
+
+    <div class="panel">
+      <h2>Catalogue</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Libellé</th>
+              <th>Descriptif</th>
+              @if (auth.isAdmin()) { <th></th> }
+            </tr>
+          </thead>
+          <tbody>
+            @for (m of materiels(); track m.id) {
+              <tr>
+                <td>{{ m.libelle }}</td>
+                <td>{{ m.descriptif }}</td>
+                @if (auth.isAdmin()) {
+                  <td class="row-actions">
+                    <button type="button" class="link" (click)="edit(m)">Modifier</button>
+                    <button type="button" class="link danger" (click)="remove(m)">Supprimer</button>
+                  </td>
+                }
+              </tr>
+            } @empty {
+              <tr><td [attr.colspan]="auth.isAdmin() ? 3 : 2">Aucun matériel</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

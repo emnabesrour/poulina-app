@@ -1,0 +1,39 @@
+<div class="login-page">
+  <div class="login-panel">
+    <div class="brand">
+      <img src="assets/logo-poulina.svg" alt="Poulina Group Holding" class="logo" />
+      <p class="eyebrow">Poulina Group Holding</p>
+      <h1>Gestion Matériel</h1>
+      <p class="subtitle">Plateforme sécurisée de demandes et validation</p>
+    </div>
+
+    <form class="login-form" (ngSubmit)="submit()">
+      <label>
+        Identifiant
+        <input type="text" name="login" [(ngModel)]="login" autocomplete="username" required />
+      </label>
+      <label>
+        Mot de passe
+        <input type="password" name="password" [(ngModel)]="password" autocomplete="current-password" required />
+      </label>
+
+      @if (error()) {
+        <p class="error">{{ error() }}</p>
+      }
+
+      <button type="submit" [disabled]="loading()">
+        {{ loading() ? 'Authentification…' : 'Accéder à la plateforme' }}
+      </button>
+    </form>
+
+    <div class="security-note">
+      Accès chiffré · alerte e-mail à chaque connexion
+    </div>
+
+    <details class="hints">
+      <summary>Comptes de démonstration</summary>
+      <p><strong>Admin:</strong> admin / admin123</p>
+      <p><strong>Utilisateur:</strong> sami / user123</p>
+    </details>
+  </div>
+</div>
